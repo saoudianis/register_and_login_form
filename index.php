@@ -43,7 +43,14 @@ if($_POST['submit']=="LogIn"){
      $query ="SELECT * FROM `note` WHERE email='".mysqli_real_escape_string($link ,$_POST['LogEmail'])."' AND password='".$_POST['LogPassword']."' LIMIT 1";
     $result= mysqli_query($link, $query);
     $row = mysqli_fetch_array($result);
-    print_r($row);
+    if($row){
+        $_SESSION['id']= $row['id'];
+        print_r($_SESSION);
+        //redirect to logged in page
+    }
+    else{
+        echo "Please enter a correct information ...";
+        }
 }
 
 ?>
